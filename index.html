@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>Калькулятор</title>
+  </head>
+  <body>
+    <form action="" method="post">
+      <label for="num1">Введите первое число:</label><br>
+      <input type="number" name="num1"><br>
+      <label for="num2">Введите второе число:</label><br>
+      <input type="number" name="num2"><br>
+      <label for="operator"Выберите действие:</label><br>
+      <select name="operator">
+        <option value="add">Сложение</option>
+        <option value="substract">Вычитание</option>
+        <option value="multiply">Умножение</option>
+        <option value="divide">Деление</option>
+      </select><br><br>
+      <button type="submit">Вычислить</button>
+    </form>
+  </body>
+  <?php
+  $num1=isset($_POST['num1'])?(float)$_POST['num1']:0;
+  $num2=isset($_POST['num2'])?(float)$_POST['num2']:0;
+  $operator=isset($_POST['operator'])?$_POST['operator']:'add';
+  if ($operator=='add'){
+    $result=$num1+$num2;
+  }elseif ($operator=='substract'){
+    $result=$num1-$num2;
+  }elseif ($operator=='multiply'){
+    $result=$num1*$num2;
+  }elseif ($operator=='divide'){
+    if ($num2==0){
+      $result='Деление на ноль';
+    }else{
+      $result=$num1/$num2;
+    }
+  }else{
+    $result='Неизвестная операция';
+  }
+  echo "<p class='result'>Результат: $result</p>";
+  ?>
+</html>
